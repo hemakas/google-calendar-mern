@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import BSNavbar from './components/BSNavbar';
-// import Navbar from './components/Navbar';
 
 function App() {
   return (
