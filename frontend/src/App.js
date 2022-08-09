@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages and components
-import Home from './pages/Home'
-import Events from './pages/Events'
 import BSNavbar from './components/BSNavbar';
+
+import Home from './pages/Home'
+import EventIndex from './pages/Events/Index'
+import EventCreate from './pages/Events/Create';
+
 
 function App() {
   return (
@@ -14,14 +17,15 @@ function App() {
           {/* bootstrap nav bar */}
           <BSNavbar />
 
-          {/* pages */}
           <div className='pages'>
-            <Routes>
-              <Route path="/" element={<Home />}/>
-            </Routes>
-            <Routes>
-              <Route path="/events" element={<Events />}/>
-            </Routes>
+            {/* home */}
+            <Routes><Route path="/" element={<Home />}/></Routes>
+            
+            {/* event index */}
+            <Routes><Route path="/events" element={<EventIndex />}/></Routes>
+
+            {/* event create */}
+            <Routes><Route path="/event/create" element={<EventCreate />}/></Routes>
           </div>
         </BrowserRouter>
 
