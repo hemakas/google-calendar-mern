@@ -4,8 +4,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import BSNavbar from './components/BSNavbar';
 
 import Home from './pages/Home'
+
+// event routes
 import EventIndex from './pages/Events/Index'
 import EventCreate from './pages/Events/Create';
+
+// user routes
+import UserIndex from './pages/Users/Index'
+import UserCreate from './pages/Users/Create';
 
 
 function App() {
@@ -26,6 +32,12 @@ function App() {
 
             {/* event create */}
             <Routes><Route path="/event/create" element={<EventCreate />}/></Routes>
+
+            {/* user index */}
+            <Routes><Route path="/users" element={<UserIndex />}/></Routes>
+
+            {/* user create */}
+            <Routes><Route path="/user/create" element={<UserCreate />}/></Routes>
           </div>
         </BrowserRouter>
 

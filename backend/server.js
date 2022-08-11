@@ -12,8 +12,8 @@ const app = express()
 app.use(express.json())
 
 // routes
-app.use('/api/event', eventRoutes)
-app.use('/api/user', userRoutes)
+app.use('/event', eventRoutes)
+app.use('/user', userRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

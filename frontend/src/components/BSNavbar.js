@@ -14,6 +14,7 @@ const BSNavbar = () => {
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/events">Events</Nav.Link>
+                            <Nav.Link href="/users">Users</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
