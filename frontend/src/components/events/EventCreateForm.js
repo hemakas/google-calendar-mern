@@ -1,31 +1,76 @@
 import { useState } from 'react'
-import { Button, Col, Form, Row } from 'react-bootstrap';
-// import DatePicker from "react-datepicker";
+import { Button, Col, Form, Row, Alert } from 'react-bootstrap';
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
-// import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const EventCreateForm = () => {
-
-// function EventCreateForm() {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
+    const [error, setError] = useState(null)
+
+    const googleId = '123googleid'
+    const userId = 1
 
     // users should come from a seperate table
     // this module needs to be done 
     // const [userId, setUserId] = useState('')
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const startDateConverted = moment(startDate).format('L')
+        const endDateConverted = moment(endDate).format('L')
+
+        const event = {
+            googleId,
+            title,
+            description,
+            startDateConverted,
+            endDateConverted,
+            userId
+        }
+
+        console.log(event)
+
+        const response = await fetch('/api/event/create', {
+            method: 'POST',
+            body: JSON.stringify(event),
+            headers: { 
+                'content-type' : 'application/json' 
+            }
+        })
+
+        const json = await response.json()
+
+        if (!response.ok) {
+            setError(json.error) 
+        } 
+
+        if (response.ok) {
+            setTitle('')
+            setDescription('')
+            setStartDate(new Date())
+            setEndDate(new Date())
+            setError(null)
+
+            console.log('New event added ', event)
+        }
+    }
+
     return (
         <div>
-            <Form>
+            <Form onSubmit={handleSubmit}>
 
                 {/* title */}
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="title">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="title" placeholder="Enter Title" 
+                        <Form.Control type="text" placeholder="Enter Title" 
                             onChange={(e) => setTitle(e.target.value)} 
                             value={title}
                         />
@@ -42,28 +87,33 @@ const EventCreateForm = () => {
                 </Form.Group>
 
                 {/* start date */}
-                <Form.Group className="mb-3" controlId="startDate">
-                    <Form.Label>Start Date</Form.Label>
-                    {/* <DatePicker 
-                        selected={startDate} 
-                        onChange={(date) => setStartDate(date)} 
-                        isClearable
-                        showYearDropdown
-                        scrollableMonthYearDropdown
-                    />   */}
-                </Form.Group>
+                <Row className="mb-3">
+                    <Form.Group as={Col} className="mb-3" controlId="startDate">
+                        <Form.Label>Start Date</Form.Label>
+                        <DatePicker 
+                            selected={startDate} 
+                            onChange={(e) => setStartDate(e.target.value)} 
+                            isClearable
+                            showYearDropdown
+                            scrollableMonthYearDropdown
+                            dateFormat={'dd/MM/yyyy'}
+                        />  
+                    </Form.Group>
 
-                {/* end date */}
-                <Form.Group className="mb-3" controlId="endDate">
-                    <Form.Label>End Date</Form.Label>
-                    {/* <DatePicker 
-                        selected={endDate} 
-                        onChange={(date) => setEndDate(date)} 
-                        isClearable
-                        showYearDropdown
-                        scrollableMonthYearDropdown
-                    />   */}
-                </Form.Group>
+                    {/* end date */}
+                    <Form.Group as={Col} className="mb-3" controlId="endDate">
+                        <Form.Label>End Date</Form.Label>
+                        <DatePicker 
+                            selected={endDate} 
+                            onChange={(e) => setEndDate(e.target.value)} 
+                            isClearable
+                            showYearDropdown
+                            scrollableMonthYearDropdown
+                            dateFormat={'dd/MM/yyyy'}
+                        />  
+                    </Form.Group>
+                    <Form.Group as={Col}></Form.Group>
+                </Row>
 
                 {/* assignee */}
                 {/* <Row className="mb-3">
@@ -77,12 +127,12 @@ const EventCreateForm = () => {
                 </Row> */}
 
                 {/* self assign */}
-                <Form.Group className="mb-3" id="selfAssign">
+                <Form.Group className="mb-3" controlId="selfAssign">
                     <Form.Check type="checkbox" label="Self Assign" />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">Submit</Button>
-
+                <Button variant="primary" type="submit">Create</Button>
+                {error && <Alert variant='danger'>{error}</Alert>}
             </Form>
         </div>
     )
