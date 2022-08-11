@@ -29,11 +29,11 @@ const getEvent = async (req, res) => {
 
 // create new event
 const createEvent = async (req, res) => {
-    const { googleId, title, description, start, end, userId } = req.body
+    const { googleId, title, description, startDate, endDate, userId } = req.body
 
     try {
         const event = await Event.create({ 
-            googleId, title, description, start, end, userId 
+            googleId, title, description, startDate, endDate, userId 
         })
         res.status(200).json(event)
     } catch (error){
