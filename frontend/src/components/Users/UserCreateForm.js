@@ -17,13 +17,12 @@ const UserCreateForm = () => {
             name,
             email,
             password,
-            confirmPassword,
             level
         }
 
         console.log(user)
 
-        const response = await fetch('/api/user/create', {
+        const response = await fetch('/user/create', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: { 
@@ -98,10 +97,12 @@ const UserCreateForm = () => {
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="level">
                         <Form.Label>Level</Form.Label>
-                        <Form.Select defaultValue="Choose...">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <Form.Select 
+                        onChange={(e) => setLevel(e.target.value)}
+                        value={level}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </Form.Select>
                     </Form.Group>
                 </Row>

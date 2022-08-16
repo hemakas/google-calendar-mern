@@ -32,7 +32,7 @@ const createUser = async (req, res) => {
     const { name, email, password, level } = req.body
 
     try {
-        const user = await user.create({ 
+        const user = await User.create({ 
             name, email, password, level
         })
         res.status(200).json(user)

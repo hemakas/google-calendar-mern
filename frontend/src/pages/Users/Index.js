@@ -11,7 +11,7 @@ const Users = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch('/api/user')
+            const response = await fetch('/user')
             const json = await response.json()
             if (response.ok) {
                 setUsers(json)
