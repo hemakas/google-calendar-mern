@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { Button, Col, Form, Row, Alert } from 'react-bootstrap';
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import { useUsersContext } from '../../hooks/useUsersContext'
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const EventCreateForm = () => {
+    const { dispatch } = useUsersContext()
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -59,6 +61,9 @@ const EventCreateForm = () => {
             setError(null)
 
             console.log('New event added ', event)
+
+            // adding to global state
+            dispatch({ type: 'CREATE_USER', payload: json})
         }
     }
 

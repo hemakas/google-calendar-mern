@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react'
-import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
+import { useEffect } from 'react'
+import { Container, Row, Col, Button, Alert, Table } from 'react-bootstrap'
+import { useUsersContext } from '../../hooks/useUsersContext'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // components
-import UserRowCard from '../../components/Users/UserRowCard'
+import UserRow from '../../components/Users/UserRow'
 
 const Users = () => {
-    const [users, setUsers] = useState(null)
+    const {users, dispatch} = useUsersContext()
 
     useEffect(() => {
         const fetchUsers = async () => {
             const response = await fetch('/user')
             const json = await response.json()
+            
             if (response.ok) {
-                setUsers(json)
+                dispatch({ type: 'SET_USERS', payload: json })
             }
         }
  
@@ -25,39 +27,33 @@ const Users = () => {
         <>
             <Container>
                 <Alert variant='primary' className='mt-3 mb-3'>
-                    <h4>All Users</h4>
+                    <Row>
+                        <Col sm={10}>
+                            <h4>All Users</h4>
+                        </Col>
+                        <Col sm={2}>
+                            <Button href="user/create">Create New</Button>
+                        </Col>
+                    </Row>
                 </Alert>
-                <Row>
-                    <Col sm={8}>
-                        {/* table layout */}
-                        {/* <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Assignee</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                { users && users.map((user) => (
-                                    <UserRow key={user._id} user={user} />
-                                ))}
-                            </tbody>
-                        </Table> */}
 
-                        {/* card layout */}
-                        { users && users.map((user) => (
-                            <UserRowCard key={user._id} user={user} />
+                {/* table layout */}
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Level</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { users && users.map((user, index) => (
+                            <UserRow key={index} user={user} />
                         ))}
-                    </Col>
-
-                    <Col sm={4}>
-                        <Button href="user/create">Create New</Button>
-                    </Col>
-                </Row>
+                    </tbody>
+                </Table>
             </Container>
         </>
     )
