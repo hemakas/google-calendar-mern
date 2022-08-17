@@ -68,7 +68,7 @@ const deleteUser = async (req, res) => {
         return res.status(404).json({ error: 'No such user!' })
     }
     
-    const user = await user.findOneAndDelete({_id: id})
+    const user = await User.findOneAndDelete({_id: id})
 
     if(!user) {
         return res.status(400).json({ error: 'No such user!' })

@@ -43,7 +43,8 @@ const EventCreateForm = () => {
             method: 'POST',
             body: JSON.stringify(event),
             headers: { 
-                'content-type' : 'application/json' 
+                'content-type' : 'application/json',
+                'Accept': 'application/json'
             }
         })
 

@@ -26,7 +26,8 @@ const UserCreateForm = () => {
             method: 'POST',
             body: JSON.stringify(user),
             headers: { 
-                'content-type' : 'application/json' 
+                'content-type' : 'application/json',
+                'Accept': 'application/json'
             }
         })
 
