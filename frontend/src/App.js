@@ -1,17 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages and components
-import BSNavbar from './components/BSNavbar';
+import BSNavbar from './components/BSNavbar'
 
 import Home from './pages/Home'
 
 // event routes
 import EventIndex from './pages/Events/Index'
-import EventCreate from './pages/Events/Create';
+import EventCreate from './pages/Events/Create'
 
 // user routes
 import UserIndex from './pages/Users/Index'
-import UserCreate from './pages/Users/Create';
+import UserCreate from './pages/Users/Create'
+import UserEdit from './pages/Users/Edit'
 
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
 
             {/* user create */}
             <Routes><Route path="/user/create" element={<UserCreate />}/></Routes>
+
+            {/* user edit */}
+            <Routes><Route path="/user/:id" element={<UserEdit />}/></Routes>
           </div>
         </BrowserRouter>
 

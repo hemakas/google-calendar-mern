@@ -1,11 +1,12 @@
-import { Button, Stack } from 'react-bootstrap';
-import { useUsersContext } from '../../hooks/useUsersContext';
+import { Button, Stack } from 'react-bootstrap'
+import { useUsersContext } from '../../hooks/useUsersContext'
+import { Link } from 'react-router-dom'
 
 const UserRow = ({ user, index }) => {
     const { dispatch } = useUsersContext()
 
     // delete user
-    const handleClick = async () => {
+    const handleDelete = async () => {
         const response = await fetch('user/' + user._id, {
             method: 'DELETE'
         })
@@ -25,9 +26,10 @@ const UserRow = ({ user, index }) => {
             <td>{user.level}</td>
             <td>
                 <Stack direction="horizontal" gap={1}>
-                    <Button className="mr-2" size="sm" variant="outline-primary">Edit</Button>
+                    {/* <Button className="mr-2" size="sm" variant="outline-primary">
+                        <Link to={`user/edit/${user._id}`}>Edit</Link></Button> */}
                     <Button className="ml-2" size="sm" variant="outline-danger"
-                        onClick={handleClick}
+                        onClick={handleDelete}
                     >Delete</Button> 
                 </Stack>
             </td>
