@@ -41,7 +41,7 @@ function App() {
             <Routes><Route path="/user/create" element={<UserCreate />}/></Routes>
 
             {/* user edit */}
-            <Routes><Route path="/user/:id" element={<UserEdit />}/></Routes>
+            <Routes><Route path="/user/edit/:id" element={<UserEdit />}/></Routes>
           </div>
         </BrowserRouter>
 

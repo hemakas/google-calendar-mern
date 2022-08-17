@@ -1,3 +1,5 @@
+import { Button, Stack } from 'react-bootstrap'
+
 const EventRow = ({ event }) => {
    
     return (
@@ -13,7 +15,7 @@ const EventRow = ({ event }) => {
                     {/* <Button className="mr-2" size="sm" variant="outline-primary">
                         <Link to={`user/edit/${user._id}`}>Edit</Link></Button> */}
                     <Button className="ml-2" size="sm" variant="outline-danger"
-                        onClick={handleDelete}
+                        // onClick={handleDelete}
                     >Delete</Button> 
                 </Stack>
             </td>

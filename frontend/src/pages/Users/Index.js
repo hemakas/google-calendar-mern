@@ -50,7 +50,7 @@ const Users = () => {
                     </thead>
                     <tbody>
                         { users && users.map((user, index) => (
-                            <UserRow key={index} user={user} />
+                            <UserRow key={index} user={user} index={index} />
                         ))}
                     </tbody>
                 </Table>

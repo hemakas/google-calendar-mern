@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // components
 import UserCreateForm from '../../components/Users/UserCreateForm'
 
-const Users = () => {
+const UserCreate = () => {
     // fetch user table info
     // const [users, setUsers] = useState(null)
 
@@ -41,4 +41,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default UserCreate

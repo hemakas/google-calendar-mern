@@ -3,9 +3,9 @@ import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // components
-import UserCreateForm from '../../components/Users/UserCreateForm'
+import UserEditForm from '../../components/Users/UserEditForm'
 
-const Users = () => {
+const UserEdit = () => {
     // fetch user table info
     // const [users, setUsers] = useState(null)
 
@@ -25,12 +25,12 @@ const Users = () => {
         <>
             <Container>
                 <Alert variant='primary' className='mt-3 mb-3'>
-                    <h4>Create User</h4>
+                    <h4>Edit User</h4>
                 </Alert>
                 
                 <Row>
                     <Col sm={8}>
-                        <UserCreateForm />
+                        <UserEditForm />
                     </Col>
                     <Col sm={4}>
 
@@ -41,4 +41,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default UserEdit
